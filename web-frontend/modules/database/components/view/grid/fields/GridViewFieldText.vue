@@ -5,10 +5,11 @@
     :class="{ editing: editing }"
     @contextmenu="stopContextIfEditing($event)"
   >
-    <div v-if="!editing" class="grid-field-text">{{ value }}</div>
+    <div  v-if="!editing" dir="auto" class="grid-field-text">{{ value }}</div>
     <input
       v-else
       ref="input"
+      dir="auto"
       v-model="copy"
       type="text"
       class="grid-field-text__input"

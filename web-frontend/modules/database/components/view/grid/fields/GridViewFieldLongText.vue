@@ -5,10 +5,11 @@
     :class="{ editing: opened }"
     @contextmenu="stopContextIfEditing($event)"
   >
-    <div v-if="!opened" class="grid-field-long-text">{{ value }}</div>
+    <div v-if="!opened" dir="auto" class="grid-field-long-text">{{ value }}</div>
     <textarea
       v-else-if="editing"
       ref="input"
+      dir="auto"
       v-model="copy"
       v-prevent-parent-scroll
       type="text"
