@@ -95,14 +95,14 @@
       <template #foot>
         <div v-if="publicGrid" class="grid-view__foot-logo">
           <a
-            href="https://baserow.io"
+            href="#"
             target="_blank"
-            title="Baserow - open source no-code database tool and Airtable alternative"
+            title="Plus It -  no-code database tool and Airtable alternative"
           >
             <img
               height="14"
               src="@baserow/modules/core/static/img/logo.svg"
-              alt="Baserow - open source no-code database tool and Airtable alternative"
+              alt="Plus It - no-code database tool and Airtable alternative"
             />
           </a>
         </div>

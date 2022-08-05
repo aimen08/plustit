@@ -228,11 +228,11 @@
         </ul>
       </div>
       <div class="sidebar__foot sidebar__foot--with-undo-redo">
-        <a class="sidebar__logo" href="https://baserow.io" target="_blank">
+        <a class="sidebar__logo" href="#" target="_blank">
           <img
             height="14"
             src="@baserow/modules/core/static/img/logo.svg"
-            alt="Baserow logo"
+            alt="Plus it logo"
           />
         </a>
         <div class="sidebar__foot-links">

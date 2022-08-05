@@ -23,7 +23,7 @@
         <img
           height="14"
           src="@baserow/modules/core/static/img/logo.svg"
-          alt="Baserow logo"
+          alt="Plus it logo"
         />
       </div>
       <a class="sidebar__collapse-link" @click="$emit('collapse-toggled')">
