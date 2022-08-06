@@ -1,23 +1,16 @@
 <template>
   <div>
-    <a
-      ref="contextLink"
-      class="header__filter-link"
-      :class="{ 'active--primary': view.public }"
-      @click="$refs.context.toggle($refs.contextLink, 'bottom', 'left', 4)"
-    >
+    <a ref="contextLink" class="header__filter-link" :class="{ 'active--primary': view.public }"
+      @click="$refs.context.toggle($refs.contextLink, 'bottom', 'left', 4)">
       <i class="header__filter-icon fas fa-share-square"></i>
       <span class="header__filter-name">
         {{ $t('shareViewLink.shareView', { viewTypeSharingLinkName }) }}
       </span>
     </a>
     <Context ref="context">
-      <a
-        v-if="!view.public"
-        class="view-sharing__create-link"
+      <a v-if="!view.public" class="view-sharing__create-link"
         :class="{ 'view-sharing__create-link--disabled': readOnly }"
-        @click.stop="!readOnly && updateView({ public: true })"
-      >
+        @click.stop="!readOnly && updateView({ public: true })">
         <i class="fas fa-share-square view-sharing__create-link-icon"></i>
         {{ $t('shareViewLink.shareViewTitle', { viewTypeSharingLinkName }) }}
       </a>
@@ -27,56 +20,36 @@
         </div>
         <div class="view-sharing__shared-link-description">
           {{
-            $t('shareViewLink.sharedViewDescription', {
-              viewTypeSharingLinkName,
-            })
+              $t('shareViewLink.sharedViewDescription', {
+                viewTypeSharingLinkName,
+              })
           }}
         </div>
         <div class="view-sharing__shared-link-content">
           <div class="view-sharing__shared-link-box">{{ shareUrl }}</div>
-          <a
-            v-tooltip="$t('shareViewLink.copyURL')"
-            class="view-sharing__shared-link-action"
-            @click="copyShareUrlToClipboard()"
-          >
+          <a v-tooltip="$t('shareViewLink.copyURL')" class="view-sharing__shared-link-action"
+            @click="copyShareUrlToClipboard()">
             <i class="fas fa-copy"></i>
             <Copied ref="copied"></Copied>
           </a>
-          <a
-            v-if="!readOnly"
-            v-tooltip="$t('shareViewLink.generateNewUrl')"
-            class="view-sharing__shared-link-action"
-            @click.prevent="$refs.rotateSlugModal.show()"
-          >
+          <a v-if="!readOnly" v-tooltip="$t('shareViewLink.generateNewUrl')" class="view-sharing__shared-link-action"
+            @click.prevent="$refs.rotateSlugModal.show()">
             <i class="fas fa-sync"></i>
-            <ViewRotateSlugModal
-              ref="rotateSlugModal"
-              :view="view"
-            ></ViewRotateSlugModal>
+            <ViewRotateSlugModal ref="rotateSlugModal" :view="view"></ViewRotateSlugModal>
           </a>
         </div>
         <div class="view-sharing__shared-link-options">
           <div class="view-sharing__option-password">
-            <SwitchInput
-              :value="view.public_view_has_password"
-              :large="true"
-              @input="toggleShareViewPassword"
-            >
+            <SwitchInput :value="view.public_view_has_password" :large="true" @input="toggleShareViewPassword">
             </SwitchInput>
             <div class="margin-left-2">
-              <i
-                class="fas margin-right-1"
-                :class="[
-                  view.public_view_has_password ? 'fa-lock' : 'fa-globe',
-                ]"
-              ></i>
+              <i class="fas margin-right-1" :class="[
+                view.public_view_has_password ? 'fa-lock' : 'fa-globe',
+              ]"></i>
               <span>{{ $t(optionPasswordText) }}</span>
             </div>
-            <a
-              v-if="view.public_view_has_password"
-              class="view-sharing__option-change-password"
-              @click.stop="$refs.enablePasswordModal.show"
-            >
+            <a v-if="view.public_view_has_password" class="view-sharing__option-change-password"
+              @click.stop="$refs.enablePasswordModal.show">
               {{ $t('shareViewLink.ChangePassword') }}
               <i class="fas fa-pen"></i>
             </a>
@@ -85,14 +58,12 @@
           </div>
         </div>
         <div v-if="!readOnly" class="view-sharing__shared-link-foot">
-          <a
-            class="view-sharing__shared-link-disable"
-            @click.stop="updateView({ public: false })"
-          >
+          <a class="view-sharing__shared-link-disable" @click.stop="updateView({ public: false })">
             <i class="fas fa-times"></i>
             {{ $t('shareViewLink.disableLink') }}
           </a>
         </div>
+        <RichText />
       </div>
     </Context>
   </div>
@@ -104,6 +75,8 @@ import ViewRotateSlugModal from '@baserow/modules/database/components/view/ViewR
 import EnablePasswordModal from '@baserow/modules/database/components/view/public/EnablePasswordModal'
 import DisablePasswordModal from '@baserow/modules/database/components/view/public/DisablePasswordModal'
 import { notifyIf } from '@baserow/modules/core/utils/error'
+import RichText from './RichText.vue'
+
 
 export default {
   name: 'ShareViewLink',
@@ -111,6 +84,8 @@ export default {
     ViewRotateSlugModal,
     EnablePasswordModal,
     DisablePasswordModal,
+    RichText,
+
   },
   props: {
     view: {
