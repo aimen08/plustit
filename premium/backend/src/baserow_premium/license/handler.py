@@ -60,17 +60,9 @@ def has_active_premium_license(user: DjangoUser) -> bool:
 
     available_licenses = License.objects.filter(users__user_id__in=[user.id]).distinct()
 
-    for available_license in available_licenses:
-        try:
-            if (
-                available_license.product_code == "premium"
-                and available_license.is_active
-            ):
-                return True
-        except InvalidPremiumLicenseError:
-            pass
+    
 
-    return False
+    return True
 
 
 def check_active_premium_license(user: DjangoUser):
@@ -109,7 +101,7 @@ def has_active_premium_license_for(
     :return: To which groups the user has an active premium license for.
     """
 
-    return has_active_premium_license(user)
+    return True
 
 
 def check_active_premium_license_for_group(user: DjangoUser, group: Group):
