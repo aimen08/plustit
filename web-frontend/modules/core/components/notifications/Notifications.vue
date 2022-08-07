@@ -1,32 +1,21 @@
 <template>
   <div class="notifications">
     <div class="top-right-notifications">
-      <ConnectingNotification v-if="connecting"></ConnectingNotification>
+      <!-- <ConnectingNotification v-if="connecting"></ConnectingNotification>
       <FailedConnectingNotification
         v-if="failedConnecting"
-      ></FailedConnectingNotification>
-      <AuthorizationErrorNotification
-        v-if="unauthorized"
-      ></AuthorizationErrorNotification>
-      <Notification
-        v-for="notification in normalNotifications"
-        :key="notification.id"
-        :notification="notification"
-      ></Notification>
+      ></FailedConnectingNotification> -->
+      <AuthorizationErrorNotification v-if="unauthorized"></AuthorizationErrorNotification>
+      <Notification v-for="notification in normalNotifications" :key="notification.id" :notification="notification">
+      </Notification>
     </div>
     <div class="bottom-right-notifications">
-      <UndoRedoNotification
-        v-if="undoRedoIsNotHidden"
-        :state="undoRedoState"
-      ></UndoRedoNotification>
+      <UndoRedoNotification v-if="undoRedoIsNotHidden" :state="undoRedoState"></UndoRedoNotification>
       <CopyingNotification v-if="copying"></CopyingNotification>
       <PastingNotification v-if="pasting"></PastingNotification>
       <ClearingNotification v-if="clearing"></ClearingNotification>
-      <RestoreNotification
-        v-for="notification in restoreNotifications"
-        :key="notification.id"
-        :notification="notification"
-      ></RestoreNotification>
+      <RestoreNotification v-for="notification in restoreNotifications" :key="notification.id"
+        :notification="notification"></RestoreNotification>
     </div>
   </div>
 </template>
